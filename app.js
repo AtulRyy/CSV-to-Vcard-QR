@@ -73,7 +73,7 @@ app.get('/dev',(req,res)=>{
 
 
 
-app.listen(process.env.port,()=>{
+app.listen(process.env.port,'0.0.0.0',()=>{
     console.log("Sever is now listening on port "+process.env.port);
     
 })
