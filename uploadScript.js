@@ -8,7 +8,7 @@ const fs = require('fs')
 const csv = require('csv-parser')
 
 const upload = multer();
-const csvFile = './test.csv'
+const csvFile = './BNI.csv'
 
 const applicant=require('./models/userModel')
 
@@ -32,14 +32,18 @@ fs.createReadStream(csvFile)
 
         // Push the parsed data to results
         results.push({
-            name: data['name'],
-            email: data['email'],
-            cellno: data['cellno'],
-            workno: data['workno'],
-            address: data['address'],
-            website: data['website'],
-            title: data['title'],
-            org: data['org']
+            firstName: data['firstName'.trim()],
+            lastName: data['lastName'.trim()],
+            email: data['email'.trim()],
+            cellno: data['cellno'.trim()],
+            address: data['address'.trim()],
+            website: data['website'.trim()],
+            title: data['title'.trim()],
+            org: data['org'.trim()],
+            city: data['city'.trim()],
+            state: data['state'.trim()],
+            country: data['country'.trim()],
+            pinCode: data['pinCode'.trim()]
         });
 
 

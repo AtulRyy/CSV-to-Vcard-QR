@@ -1,14 +1,19 @@
 const mongoose=require('mongoose')
 
 const userSchema=mongoose.Schema({
-    name:String,
+    firstName:String,
+    lastName:String,
     email:String,
     cellno:String,
     workno:String,
     address:String,
     website:String,
     title:String,
-    org:String
+    org:String,
+    city:String,
+    state:String,
+    country:String,
+    pinCode:String
 
 })
 

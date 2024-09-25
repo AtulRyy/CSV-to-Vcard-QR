@@ -33,9 +33,29 @@ app.get('/',async(req,res)=>{
 
         for(const user of Users)
         {
-            const vcard=createVCard(user);
-            const qrCodeDataUrl= await QRCode.toDataURL(vcard);
-            qrCodes.push({ name: user.name,org:user.org, qrCode: qrCodeDataUrl });
+            const vcard=createVCard(user.firstName,
+                user.lastName,
+                user.org,
+                user.title,
+                user.cellno,
+                user.email,
+                user.website,
+                user.address,
+                user.city,
+                user.state,
+                user.pinCode,
+                user.country);
+            // console.log(vcard);
+            
+            try {
+                const qrCodeDataUrl = await QRCode.toDataURL(vcard);
+                qrCodes.push({ name: user.firstName + " " + user.lastName, org: user.org, qrCode: qrCodeDataUrl });
+                // console.log(qrCodeDataUrl);
+                
+            } catch (error) {
+                console.error("Error generating QR code:", error);
+            }
+            
         }
         res.render('index.ejs',{qrCodes});
     }catch (error) {
@@ -59,16 +79,17 @@ app.listen(3000,()=>{
 
 
 
-function createVCard({ name, email, cellno, workno, address, website, title, org }) {
-    return `BEGIN:VCARD
+function createVCard(firstName,lastName,org,title,cellno,email,website,address,city,state,pinCode,country) {
+    return`BEGIN:VCARD
 VERSION:3.0
-FN:${name}
-EMAIL:${email}
+N:${lastName};${firstName}
+FN:${firstName} ${lastName}
+ORG:${org || 'N/A'}
+TITLE:${title || 'N/A'}
 TEL;TYPE=CELL:${cellno}
-TEL;TYPE=WORK:${workno}
-ADR:${address}
-URL:${website}
-TITLE:${title}
-ORG:${org}
+EMAIL:${email}
+URL:${website || ''}
+ADR;TYPE=WORK:;;${address};${city};${state};${pinCode};${country}
 END:VCARD`;
 }
+
