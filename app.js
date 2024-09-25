@@ -6,7 +6,8 @@ const vCardParser=require('vcard-parser');
 const mongoose=require('mongoose')
 const path=require('path')
 const User=require('./models/userModel')
-
+const dotenv=require('dotenv')
+dotenv.config();
 const upload=multer();
 const mongooseString = 'mongodb+srv://atulreny911:7swjI6MT6QFuIDPO@bedazzlers.h7f5t.mongodb.net/?retryWrites=true&w=majority&appName=bedazzlers'
 
@@ -72,8 +73,8 @@ app.get('/dev',(req,res)=>{
 
 
 
-app.listen(3000,()=>{
-    console.log("Sever is now listening on port 3000");
+app.listen(process.env.port,()=>{
+    console.log("Sever is now listening on port "+process.env.port);
     
 })
 
