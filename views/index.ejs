@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="bg-black h-screen w-full relative">
+    <button onclick="downloadAllQRs()"
+      class="group border-2 flex items-center border-green-400 fixed bottom-10 right-10 text-black bg-green-400 p-4 px-5 rounded-xl hover:bg-transparent hover:text-white transition-all duration-500 ease-in-out"
+    >
+      <i class="fa fa-arrow-down text 4xl"></i>
+      <p
+        class="text-white text-xl hidden group-hover:block transition-all ease-in-out duration-300 ml-3"
+      >
+        Download All
+      </p>
+    </button>
+    <div class="home-section">
+      <header class="py-10 flex justify-center">
+        <div class="titles text-white">
+          <h1 class="text-6xl font-mono">CSV TO VCard QR</h1>
+          <p class="text-right mt-3 text-xl">
+            By
+            <a
+              href="https://www.linkedin.com/in/atulry/"
+              class="text-green-400 hover:underline"
+              >Atul Reny</a
+            >
+          </p>
+        </div>
+      </header>
+      <div class="button flex justify-center">
+        <div class="gallery mr-16">
+          <button
+            class="rounded-xl p-3 bg-green-400 text-black text-xl hover:bg-transparent border-green-400 border hover:text-white transition-all ease-in-out duration-700"
+          >
+            <i class="fa-solid fa-qrcode text-lg mr-4"></i>QR Gallery
+          </button>
+        </div>
+        <div class="upload-csv">
+          <button
+            class="rounded-xl p-3 bg-green-400 text-black text-xl hover:bg-green-600 border-green-400 border hover:text-white transition-all ease-in-out duration-700"
+          >
+            <i class="fa-solid fa-upload text-lg mr-4"></i>Upload CSV
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center">
+        <div
+          class="gallery my-16 w-[75%] p-5 bg-slate-200 border-green-600 border rounded-2xl"
+        >
+          <div class="contained w-full">
+            <% qrCodes.forEach(function(item) { %>
+            <div
+              class="item flex justify-between items-center p-10 border-2 border-black rounded-2xl mb-5"
+            >
+              <div class="name">
+                <h2 class="text-2xl font-bold"><%=item.name%></h2>
+              </div>
+              <div class="org">
+                <h2 class="text-2xl font-bold"><%=item.org%></h2>
+              </div>
+              <div class="qr-container relative cursor-pointer group">
+                <a
+                  href="<%= item.qrCode %>"
+                  download="<%= item.name %>_QRCode.png"
+                  ><img class="size-36" src="<%= item.qrCode %>" alt="" />
+                  <div
+                    class="overlay opacity-0 group-hover:opacity-100 h-full w-full bg-[#28a6289e] text-white z-10 absolute top-0 left-0 flex justify-center items-center transition-all duration-500 ease-in-out"
+                  >
+                    <i
+                      class="fa fa-arrow-down text-4xl"
+                      aria-hidden="true"
+                    ></i></div
+                ></a>
+              </div>
+            </div>
+
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>function downloadAllQRs() {
+      window.location.href = '/download-all-qr'; // Trigger the ZIP file download route
+  }</script>
+  </body>
+</html>

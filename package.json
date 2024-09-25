@@ -1,0 +1,25 @@
+{
+  "name": "vcf_to_qr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "express-zip": "^3.0.0",
+    "jszip": "^3.10.1",
+    "mongoose": "^8.6.3",
+    "multer": "^1.4.5-lts.1",
+    "qrcode": "^1.5.4",
+    "vcard-parser": "^1.0.0"
+  }
+}
